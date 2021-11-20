@@ -1,12 +1,28 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <nav-bar></nav-bar>
     <router-view/>
   </div>
 </template>
+
+<script>
+import {mapActions} from 'vuex'
+import NavBar from '@/components/NavBar.vue'
+
+export default {
+  components: {
+    NavBar,
+  },
+  
+  mounted(){
+    this.getPizzas()
+  },
+
+  methods:{
+    ...mapActions(['getPizzas']),
+  },
+}
+</script>
 
 <style>
 #app {
@@ -15,6 +31,7 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  /* background-color: #f5f5f5; */
 }
 
 #nav {
@@ -23,7 +40,7 @@
 
 #nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: #2c3e50;   
 }
 
 #nav a.router-link-exact-active {
